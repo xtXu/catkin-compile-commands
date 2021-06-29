@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd `catkin locate --workspace $(pwd)`
+
+catkin config --extend /opt/ros/noetic 
+
+if [[ -d $PWD/../underlay_ws && ! "${PWD##*/}" == "underlay_ws" ]] ; then
+    catkin config --extend $PWD/../underlay_ws/devel
+fi
+
+catkin build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-O0 -DCMAKE_EXPORT_COMPILE_COMMANDS=YES --dry-run "$@"
+
+jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json
