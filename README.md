@@ -1,6 +1,6 @@
 # catkin-compile-commands
 
-Copied from this [issue](https://github.com/catkin/catkin_tools/issues/551). Generates `compile-commands.json` files using catkin.
+Copied from this [issue](https://github.com/catkin/catkin_tools/issues/551). Generates `compile_commands.json` files using catkin, usually used with language servers like `clangd`.
 
 ## Prerequisites
 
@@ -18,3 +18,12 @@ make install [PREFIX=/installation/directory]
 ```sh
 make uninstall [PREFIX=/installation/directory]
 ```
+## Usage
+
+In catkin root directory, run
+
+```sh
+catkin-compile-commands
+```
+
+Restart your language server if necessary.
