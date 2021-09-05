@@ -1,13 +1,16 @@
-#!/bin/bash
+#!/bin/zsh
 
-cd `catkin locate --workspace $(pwd)`
+# cd into catkin workspace root
+cd $(catkin locate --workspace $(pwd))
 
-catkin config --extend /opt/ros/noetic 
+# get list of extended workspaces
+EXTENDED_WS="$(pwd)/.extended_ws"
 
-if [[ -d $PWD/../underlay_ws && ! "${PWD##*/}" == "underlay_ws" ]] ; then
-    catkin config --extend $PWD/../underlay_ws/devel
-fi
+for line in "${(@f)"$(<$EXTENDED_WS)"}"
+{
+  catkin config --extend $line/setup.zsh
+}
 
-catkin build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-O0 -DCMAKE_EXPORT_COMPILE_COMMANDS=YES --dry-run "$@"
+catkin build -c -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES "$@"
 
 jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json
