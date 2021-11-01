@@ -8,9 +8,9 @@ EXTENDED_WS="$(pwd)/.extended_ws"
 
 for line in "${(@f)"$(<$EXTENDED_WS)"}"
 {
-  catkin config --extend ${line}/setup.zsh
+  [[ ! -z "${line}" ]] && catkin config --extend ${line}
 }
 
-catkin build -c -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES "$@"
+# catkin build -c -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES "$@"
 
 jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json
