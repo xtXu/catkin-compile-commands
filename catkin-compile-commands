@@ -1,16 +1,18 @@
-#!/bin/zsh
+#!/bin/bash
 
 # cd into catkin workspace root
-cd $(catkin locate --workspace $(pwd))
+cd "$(catkin locate --workspace "$(pwd)")"
+
+# Check if build/ exists
+[ ! -d ./build ] && echo "Not a valid catkin workspace" && exit
 
 # get list of extended workspaces
 EXTENDED_WS="$(pwd)/.extended_ws"
+if [ -f "${EXTENDED_WS}" ]; then
+  while IFS= read -r line; do
+    [ -d "${line}" ] && catkin config --extend "${line}"
+  done <"${EXTENDED_WS}"
+fi
 
-for line in "${(@f)"$(<$EXTENDED_WS)"}"
-{
-  [[ ! -z "${line}" ]] && catkin config --extend ${line}
-}
-
-# catkin build -c -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES "$@"
-
-jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json
+# combine compile commands
+jq -s 'map(.[])' build/**/compile_commands.json >compile_commands.json
