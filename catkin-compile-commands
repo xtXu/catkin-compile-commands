@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Bash strict mode
+set -euo pipefail
+IFS=$'\n\t'
 
 # cd into catkin workspace root
 cd "$(catkin locate --workspace "$(pwd)")"
