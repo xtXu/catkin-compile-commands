@@ -1,6 +1,6 @@
 # catkin-compile-commands
 
-Copied from this [issue](https://github.com/catkin/catkin_tools/issues/551). Generates `compile-commands.json` files using `catkin` and `zsh`, usually used with language servers like `clangd`.
+Copied from this [issue](https://github.com/catkin/catkin_tools/issues/551). Generates `compile-commands.json` files using `catkin` and `bash`, used with language servers like `clangd`.
 
 ## Prerequisites
 
@@ -18,6 +18,12 @@ make install [PREFIX=/installation/directory]
 
 ```sh
 make uninstall [PREFIX=/installation/directory]
+```
+
+## Nix Flake
+
+```sh
+nix build .
 ```
 
 ## Usage
