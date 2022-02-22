@@ -8,7 +8,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        pname = "catkin-compile-command";
+        pname = "catkin-compile-commands";
         ccc_name = pname;
         ccc_src = builtins.readFile ./catkin-compile-commands;
         ccc_script = (pkgs.writeShellScriptBin ccc_name ccc_src).overrideAttrs
