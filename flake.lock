@@ -1,6 +1,35 @@
 {
   "nodes": {
-    "flake-utils": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1645433236,
+        "narHash": "sha256-4va4MvJ076XyPp5h8sm5eMQvCrJ6yZAbBmyw95dGyw4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7f9b6e2babf232412682c09e57ed666d8f84ac2d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": [
+          "wafer",
+          "utils"
+        ],
+        "nixpkgs": [
+          "wafer",
+          "nixpkgs"
+        ],
+        "wafer": "wafer"
+      }
+    },
+    "utils": {
       "locked": {
         "lastModified": 1644229661,
         "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
@@ -15,24 +44,24 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
+    "wafer": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "utils": "utils"
+      },
       "locked": {
-        "lastModified": 1645013224,
-        "narHash": "sha256-b7OEC8vwzJv3rsz9pwnTX2LQDkeOWz2DbKypkVvNHXc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b66b39216b1fef2d8c33cc7a5c72d8da80b79970",
+        "lastModified": 1645572013,
+        "narHash": "sha256-V5u2Obkct2T/EgdbRkf9WtPEGbtmQF3/gYaeDzUOZxk=",
+        "owner": "zoenglinghou",
+        "repo": "wafer",
+        "rev": "4eb12083067c36b7ee80bbdec0f20197460fb9ad",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "root": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "owner": "zoenglinghou",
+        "ref": "main",
+        "repo": "wafer",
+        "type": "github"
       }
     }
   },

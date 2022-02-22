@@ -2,9 +2,14 @@
   description =
     "Export cmake compilation commands for langauge servers like clangd";
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs = {
+    wafer.url = "github:zoenglinghou/wafer?ref=main";
+    
+    flake-utils.follows = "wafer/utils";
+    nixpkgs.follows = "wafer/nixpkgs";
+  };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
