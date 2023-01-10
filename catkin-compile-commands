@@ -19,4 +19,4 @@ if [ -f "${EXTENDED_WS}" ]; then
 fi
 
 # combine compile commands
-jq -s 'map(.[])' build/**/compile_commands.json >compile_commands.json
+jq -s 'map(.[])' build/**/compile_commands.json > build/compile_commands.json
